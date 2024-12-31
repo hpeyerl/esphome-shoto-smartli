@@ -1,0 +1,641 @@
+substitutions:
+  name: shoto-smartli-bms
+  device_description: "Monitor and control a Shoto Smart Lithium BMS via RS485 (Modbus)"
+
+esphome:
+  name: ${name}
+  comment: ${device_description}
+  min_version: 2024.6.0
+  project:
+    name: "hpeyerl.esphome-shoto-smartli-bms"
+    version: 1.0.0
+
+sensor:
+  #vbus
+  - platform: modbus_controller
+    modbus_controller_id: modbus_controller_a
+    name: "VBus"
+    address: 0x0
+    value_type: U_WORD
+    register_type: read
+    device_class: "voltage"
+    state_class: "measurement"
+    unit_of_measurement: "V"
+    accuracy_decimals: 2
+    filters:
+      - multiply: 0.01
+    
+  #vbat
+  - platform: modbus_controller
+    modbus_controller_id: modbus_controller_a
+    name: "VBat"
+    address: 0x1
+    value_type: U_WORD
+    register_type: read
+    device_class: "voltage"
+    state_class: "measurement"
+    unit_of_measurement: "V"
+    accuracy_decimals: 2
+    filters:
+      - multiply: 0.01
+  
+  #Tcell_max
+  - platform: modbus_controller
+    modbus_controller_id: modbus_controller_a
+    name: "Max Cell Temp"
+    address: 0x5
+    value_type: U_WORD
+    register_type: read
+    device_class: "temperature"
+    state_class: "measurement"
+    unit_of_measurement: "_C"
+    accuracy_decimals: 2
+    filters:
+      - multiply: 0.01
+  
+  #Tcell_min
+  - platform: modbus_controller
+    modbus_controller_id: modbus_controller_a
+    name: "Min Cell Temp"
+    address: 0x6
+    value_type: U_WORD
+    register_type: read
+    device_class: "temperature"
+    state_class: "measurement"
+    unit_of_measurement: "_C"
+    accuracy_decimals: 2
+    filters:
+      - multiply: 0.01
+
+  #Tcell1
+  - platform: modbus_controller
+    modbus_controller_id: modbus_controller_a
+    name: "Cell1 Temp"
+    address: 0x12
+    value_type: U_WORD
+    register_type: read
+    device_class: "temperature"
+    state_class: "measurement"
+    unit_of_measurement: "_C"
+    accuracy_decimals: 2
+    filters:
+      - multiply: 0.01
+
+  #Tcell2
+  - platform: modbus_controller
+    modbus_controller_id: modbus_controller_a
+    name: "Cell2 Temp"
+    address: 0x13
+    value_type: U_WORD
+    register_type: read
+    device_class: "temperature"
+    state_class: "measurement"
+    unit_of_measurement: "_C"
+    accuracy_decimals: 2
+    filters:
+      - multiply: 0.01
+
+  #Tcell3
+  - platform: modbus_controller
+    modbus_controller_id: modbus_controller_a
+    name: "Cell3 Temp"
+    address: 0x14
+    value_type: U_WORD
+    register_type: read
+    device_class: "temperature"
+    state_class: "measurement"
+    unit_of_measurement: "_C"
+    accuracy_decimals: 2
+    filters:
+      - multiply: 0.01
+
+  #Tcell4
+  - platform: modbus_controller
+    modbus_controller_id: modbus_controller_a
+    name: "Cell4 Temp"
+    address: 0x15
+    value_type: U_WORD
+    register_type: read
+    device_class: "temperature"
+    state_class: "measurement"
+    unit_of_measurement: "_C"
+    accuracy_decimals: 2
+    filters:
+      - multiply: 0.01
+
+  #Tcell5
+  - platform: modbus_controller
+    modbus_controller_id: modbus_controller_a
+    name: "Cell5 Temp"
+    address: 0x16
+    value_type: U_WORD
+    register_type: read
+    device_class: "temperature"
+    state_class: "measurement"
+    unit_of_measurement: "_C"
+    accuracy_decimals: 2
+    filters:
+      - multiply: 0.01
+
+  #Tcell6
+  - platform: modbus_controller
+    modbus_controller_id: modbus_controller_a
+    name: "Cell6 Temp"
+    address: 0x17
+    value_type: U_WORD
+    register_type: read
+    device_class: "temperature"
+    state_class: "measurement"
+    unit_of_measurement: "_C"
+    accuracy_decimals: 2
+    filters:
+      - multiply: 0.01
+
+  #Tcell7
+  - platform: modbus_controller
+    modbus_controller_id: modbus_controller_a
+    name: "Cell7 Temp"
+    address: 0x18
+    value_type: U_WORD
+    register_type: read
+    device_class: "temperature"
+    state_class: "measurement"
+    unit_of_measurement: "_C"
+    accuracy_decimals: 2
+    filters:
+      - multiply: 0.01
+
+  #Tcell8
+  - platform: modbus_controller
+    modbus_controller_id: modbus_controller_a
+    name: "Cell8 Temp"
+    address: 0x19
+    value_type: U_WORD
+    register_type: read
+    device_class: "temperature"
+    state_class: "measurement"
+    unit_of_measurement: "_C"
+    accuracy_decimals: 2
+    filters:
+      - multiply: 0.01
+
+  #Tcell9
+  - platform: modbus_controller
+    modbus_controller_id: modbus_controller_a
+    name: "Cell9 Temp"
+    address: 0x1a
+    value_type: U_WORD
+    register_type: read
+    device_class: "temperature"
+    state_class: "measurement"
+    unit_of_measurement: "_C"
+    accuracy_decimals: 2
+    filters:
+      - multiply: 0.01
+
+  #Tcell10
+  - platform: modbus_controller
+    modbus_controller_id: modbus_controller_a
+    name: "Cell10 Temp"
+    address: 0x1b
+    value_type: U_WORD
+    register_type: read
+    device_class: "temperature"
+    state_class: "measurement"
+    unit_of_measurement: "_C"
+    accuracy_decimals: 2
+    filters:
+      - multiply: 0.01
+
+  #Tcell11
+  - platform: modbus_controller
+    modbus_controller_id: modbus_controller_a
+    name: "Cell11 Temp"
+    address: 0x1c
+    value_type: U_WORD
+    register_type: read
+    device_class: "temperature"
+    state_class: "measurement"
+    unit_of_measurement: "_C"
+    accuracy_decimals: 2
+    filters:
+      - multiply: 0.01
+
+  #Tcell12
+  - platform: modbus_controller
+    modbus_controller_id: modbus_controller_a
+    name: "Cell12 Temp"
+    address: 0x1d
+    value_type: U_WORD
+    register_type: read
+    device_class: "temperature"
+    state_class: "measurement"
+    unit_of_measurement: "_C"
+    accuracy_decimals: 2
+    filters:
+      - multiply: 0.01
+
+  #Tcell13
+  - platform: modbus_controller
+    modbus_controller_id: modbus_controller_a
+    name: "Cell13 Temp"
+    address: 0x1e
+    value_type: U_WORD
+    register_type: read
+    device_class: "temperature"
+    state_class: "measurement"
+    unit_of_measurement: "_C"
+    accuracy_decimals: 2
+    filters:
+      - multiply: 0.01
+
+  #Tcell14
+  - platform: modbus_controller
+    modbus_controller_id: modbus_controller_a
+    name: "Cell14 Temp"
+    address: 0x1f
+    value_type: U_WORD
+    register_type: read
+    device_class: "temperature"
+    state_class: "measurement"
+    unit_of_measurement: "_C"
+    accuracy_decimals: 2
+    filters:
+      - multiply: 0.01
+
+
+  #Tcell15
+  - platform: modbus_controller
+    modbus_controller_id: modbus_controller_a
+    name: "Cell15 Temp"
+    address: 0x20
+    value_type: U_WORD
+    register_type: read
+    device_class: "temperature"
+    state_class: "measurement"
+    unit_of_measurement: "_C"
+    accuracy_decimals: 2
+    filters:
+      - multiply: 0.01
+
+  #Tcell16
+  - platform: modbus_controller
+    modbus_controller_id: modbus_controller_a
+    name: "Cell16 Temp"
+    address: 0x21
+    value_type: U_WORD
+    register_type: read
+    device_class: "temperature"
+    state_class: "measurement"
+    unit_of_measurement: "_C"
+    accuracy_decimals: 2
+    filters:
+      - multiply: 0.01
+
+  #Vcell1
+  - platform: modbus_controller
+    modbus_controller_id: modbus_controller_a
+    name: "Vcell1"
+    address: 0x22
+    value_type: U_WORD
+    register_type: read
+    device_class: "voltage"
+    state_class: "measurement"
+    unit_of_measurement: "V"
+    accuracy_decimals: 2
+    filters:
+      - multiply: 0.01
+
+  #Vcell2
+  - platform: modbus_controller
+    modbus_controller_id: modbus_controller_a
+    name: "Vcell2"
+    address: 0x23
+    value_type: U_WORD
+    register_type: read
+    device_class: "voltage"
+    state_class: "measurement"
+    unit_of_measurement: "V"
+    accuracy_decimals: 2
+    filters:
+      - multiply: 0.01
+
+  #Vcell3
+  - platform: modbus_controller
+    modbus_controller_id: modbus_controller_a
+    name: "Vcell3"
+    address: 0x24
+    value_type: U_WORD
+    register_type: read
+    device_class: "voltage"
+    state_class: "measurement"
+    unit_of_measurement: "V"
+    accuracy_decimals: 2
+    filters:
+      - multiply: 0.01
+
+  #Vcell4
+  - platform: modbus_controller
+    modbus_controller_id: modbus_controller_a
+    name: "Vcell4"
+    address: 0x25
+    value_type: U_WORD
+    register_type: read
+    device_class: "voltage"
+    state_class: "measurement"
+    unit_of_measurement: "V"
+    accuracy_decimals: 2
+    filters:
+      - multiply: 0.01
+
+  #Vcell5
+  - platform: modbus_controller
+    modbus_controller_id: modbus_controller_a
+    name: "Vcell5"
+    address: 0x26
+    value_type: U_WORD
+    register_type: read
+    device_class: "voltage"
+    state_class: "measurement"
+    unit_of_measurement: "V"
+    accuracy_decimals: 2
+    filters:
+      - multiply: 0.01
+
+  #Vcell6
+  - platform: modbus_controller
+    modbus_controller_id: modbus_controller_a
+    name: "Vcell6"
+    address: 0x27
+    value_type: U_WORD
+    register_type: read
+    device_class: "voltage"
+    state_class: "measurement"
+    unit_of_measurement: "V"
+    accuracy_decimals: 2
+    filters:
+      - multiply: 0.01
+
+  #Vcell7
+  - platform: modbus_controller
+    modbus_controller_id: modbus_controller_a
+    name: "Vcell7"
+    address: 0x28
+    value_type: U_WORD
+    register_type: read
+    device_class: "voltage"
+    state_class: "measurement"
+    unit_of_measurement: "V"
+    accuracy_decimals: 2
+    filters:
+      - multiply: 0.01
+
+  #Vcell8
+  - platform: modbus_controller
+    modbus_controller_id: modbus_controller_a
+    name: "Vcell8"
+    address: 0x29
+    value_type: U_WORD
+    register_type: read
+    device_class: "voltage"
+    state_class: "measurement"
+    unit_of_measurement: "V"
+    accuracy_decimals: 2
+    filters:
+      - multiply: 0.01
+
+  #Vcell9
+  - platform: modbus_controller
+    modbus_controller_id: modbus_controller_a
+    name: "Vcell9"
+    address: 0x2a
+    value_type: U_WORD
+    register_type: read
+    device_class: "voltage"
+    state_class: "measurement"
+    unit_of_measurement: "V"
+    accuracy_decimals: 2
+    filters:
+      - multiply: 0.01
+
+  #Vcell10
+  - platform: modbus_controller
+    modbus_controller_id: modbus_controller_a
+    name: "Vcell10"
+    address: 0x2b
+    value_type: U_WORD
+    register_type: read
+    device_class: "voltage"
+    state_class: "measurement"
+    unit_of_measurement: "V"
+    accuracy_decimals: 2
+    filters:
+      - multiply: 0.01
+
+  #Vcell11
+  - platform: modbus_controller
+    modbus_controller_id: modbus_controller_a
+    name: "Vcell11"
+    address: 0x2c
+    value_type: U_WORD
+    register_type: read
+    device_class: "voltage"
+    state_class: "measurement"
+    unit_of_measurement: "V"
+    accuracy_decimals: 2
+    filters:
+      - multiply: 0.01
+
+  #Vcell12
+  - platform: modbus_controller
+    modbus_controller_id: modbus_controller_a
+    name: "Vcell12"
+    address: 0x2d
+    value_type: U_WORD
+    register_type: read
+    device_class: "voltage"
+    state_class: "measurement"
+    unit_of_measurement: "V"
+    accuracy_decimals: 2
+    filters:
+      - multiply: 0.01
+
+  #Vcell13
+  - platform: modbus_controller
+    modbus_controller_id: modbus_controller_a
+    name: "Vcell13"
+    address: 0x2e
+    value_type: U_WORD
+    register_type: read
+    device_class: "voltage"
+    state_class: "measurement"
+    unit_of_measurement: "V"
+    accuracy_decimals: 2
+    filters:
+      - multiply: 0.01
+
+  #Vcell14
+  - platform: modbus_controller
+    modbus_controller_id: modbus_controller_a
+    name: "Vcell14"
+    address: 0x2f
+    value_type: U_WORD
+    register_type: read
+    device_class: "voltage"
+    state_class: "measurement"
+    unit_of_measurement: "V"
+    accuracy_decimals: 2
+    filters:
+      - multiply: 0.01
+
+  #Vcell15
+  - platform: modbus_controller
+    modbus_controller_id: modbus_controller_a
+    name: "Vcell15"
+    address: 0x30
+    value_type: U_WORD
+    register_type: read
+    device_class: "voltage"
+    state_class: "measurement"
+    unit_of_measurement: "V"
+    accuracy_decimals: 2
+    filters:
+      - multiply: 0.01
+
+  #Vcell16
+  - platform: modbus_controller
+    modbus_controller_id: modbus_controller_a
+    name: "Vcell16"
+    address: 0x31
+    value_type: U_WORD
+    register_type: read
+    device_class: "voltage"
+    state_class: "measurement"
+    unit_of_measurement: "V"
+    accuracy_decimals: 2
+    filters:
+      - multiply: 0.01
+
+  # SW Version
+  - platform: modbus_controller
+    modbus_controller_id: modbus_controller_a
+    name: "SW Version"
+    address: 0x101
+    value_type: U_WORD
+    register_type: read
+
+  # HW Version
+  - platform: modbus_controller
+    modbus_controller_id: modbus_controller_a
+    name: "HW Version"
+    address: 0x102
+    value_type: U_WORD
+    register_type: read
+
+  # # Cells
+  - platform: modbus_controller
+    modbus_controller_id: modbus_controller_a
+    name: "Cell Count"
+    address: 0x10f
+    value_type: U_WORD
+    register_type: read
+
+  # Operation Hours 
+  - platform: modbus_controller
+    modbus_controller_id: modbus_controller_a
+    name: "Hours"
+    address: 0x209
+    value_type: U_WORD
+    register_type: read
+
+  # 0x1000 - Year
+  # 0x1001 - Month
+  # 0x1002 - Day
+  # 0x1003 - Hour
+  # 0x1004 - Minute
+  # 0x1005 - Second
+
+  # Discharge BUS voltage Set Value
+  - platform: modbus_controller
+    modbus_controller_id: modbus_controller_a
+    name: "Vbus_set"
+    address: 0x1010
+    value_type: U_WORD
+    register_type: read
+    device_class: "voltage"
+    state_class: "measurement"
+    unit_of_measurement: "V"
+    accuracy_decimals: 2
+    filters:
+      - multiply: 0.01
+
+  # Discharge BUS current Set Value (% of BUS current value)
+  - platform: modbus_controller
+    modbus_controller_id: modbus_controller_a
+    name: "Ibus_set"
+    address: 0x1011
+    value_type: U_WORD
+    register_type: read
+    device_class: "battery"
+    state_class: "measurement"
+    unit_of_measurement: "%"
+
+  # Discharge BUS power Set Value (% of BUS power value)
+  - platform: modbus_controller
+    modbus_controller_id: modbus_controller_a
+    name: "Pbus_set"
+    address: 0x1012
+    value_type: U_WORD
+    register_type: read
+    device_class: "battery"
+    state_class: "measurement"
+    unit_of_measurement: "%"
+
+  # Average Charge current setting (%)
+  - platform: modbus_controller
+    modbus_controller_id: modbus_controller_a
+    name: "Ibat_set"
+    address: 0x1013
+    value_type: U_WORD
+    register_type: read
+    device_class: "battery"
+    state_class: "measurement"
+    unit_of_measurement: "%"
+
+  # Discharge BUS voltage Step Value
+  - platform: modbus_controller
+    modbus_controller_id: modbus_controller_a
+    name: "Vbus_set_dod"
+    address: 0x1014
+    value_type: U_WORD
+    register_type: read
+    device_class: "voltage"
+    state_class: "measurement"
+    unit_of_measurement: "V"
+    accuracy_decimals: 2
+    filters:
+      - multiply: 0.01
+
+  # DoD - Depth of Discharge
+  - platform: modbus_controller
+    modbus_controller_id: modbus_controller_a
+    name: "DoD"
+    address: 0x1015
+    value_type: U_WORD
+    register_type: read
+    device_class: "battery"
+    state_class: "measurement"
+    unit_of_measurement: "%"
+
+  # Mode.  Address: 0x1016
+  #    0x0101 Power Management constant voltage discharge
+  #    0x0202 Reserved
+  #    0x0303 Battery Characteristic discharge mode
+  #    0x0505 Maintenance
+  #    0x0606 Production Test
+  #    0x0707 Self-managed constant voltage discharge (self-following)
+
+  # RS485 Modbus address Address: 0x1017
+  # Set number of cell temperature probes Address: 0x1018
+  # Set number of cells Address: 0x1018
+
