@@ -638,4 +638,215 @@ sensor:
   # RS485 Modbus address Address: 0x1017
   # Set number of cell temperature probes Address: 0x1018
   # Set number of cells Address: 0x1018
+  # Reserved: 0x101A
+  # Reserved: 0x101B
+  # Reserved: 0x101C
+  # Reserved: 0x101D
+  # Reserved: 0x101E
 
+  #Ibus - Charging is positive, discharge is negative
+  - platform: modbus_controller
+    modbus_controller_id: modbus_controller_a
+    name: "Ibus"
+    address: 0x1030
+    value_type: U_WORD
+    register_type: read
+    device_class: "current"
+    state_class: "measurement"
+    unit_of_measurement: "A"
+    accuracy_decimals: 2
+    filters:
+      - multiply: 0.01
+
+  #Ibat - Charging is positive, discharge is negative
+  - platform: modbus_controller
+    modbus_controller_id: modbus_controller_a
+    name: "Ibat"
+    address: 0x1031
+    value_type: U_WORD
+    register_type: read
+    device_class: "current"
+    state_class: "measurement"
+    unit_of_measurement: "A"
+    accuracy_decimals: 2
+    filters:
+      - multiply: 0.01
+
+# Probably do a template here to convert this to Wh.  Probably don't need it anyway.
+#  #Battery Capacity
+#  - platform: modbus_controller
+#    modbus_controller_id: modbus_controller_a
+#    name: "CapacityAH"
+#    address: 0x1032
+#    value_type: U_WORD
+#    register_type: read
+#    device_class: "energy_storage"
+#    state_class: "measurement"
+#    unit_of_measurement: "Ah"
+#    accuracy_decimals: 2
+#    filters:
+#      - multiply: 0.01
+
+  # Cycles.  0x1033
+
+  # SoC 
+  - platform: modbus_controller
+    modbus_controller_id: modbus_controller_a
+    name: "SoC"
+    address: 0x1034
+    value_type: U_WORD
+    register_type: read
+    device_class: "battery"
+    state_class: "measurement"
+    unit_of_measurement: "%"
+
+  # SoH 
+  - platform: modbus_controller
+    modbus_controller_id: modbus_controller_a
+    name: "SoH"
+    address: 0x1035
+    value_type: U_WORD
+    register_type: read
+    device_class: "battery"
+    state_class: "measurement"
+    unit_of_measurement: "%"
+
+  # #temp probes.   0x1036
+  # Alarm Status 1: 0x1037
+  # ( DATA0: )
+  #    BIT1: (reserved)
+  #    BIT2: (reserved)
+  #    BIT3: Cell voltage is too low fault
+  #    BIT4: Voltage sampling disconnection
+  #    BIT5: The charging MOS is damaged
+  #    BIT6: Discharge MOS damage
+  #    BIT7: The voltage sampling element is damaged
+  # ( DATA1: )
+  #    BIT0: NTC disconnection
+  #    BIT1: ADC damaged
+  #    BIT2: Reverse battery connection
+  #    BIT3: Fan on failure BIT4: Battery Lock
+  #    BIT5: (reserved)
+  #    BIT6: (reserved)
+  #    BIT7: (reserved)
+  # Alarm Status 2: 1038
+  # ( DATA2 : )
+  #    BIT0: Discharge over- temperature protection
+  #    BIT1: Discharge under- temperature protection
+  #    BIT2: Overall Overvoltage Protection
+  #    BIT3: Startup failed
+  #    BIT4: Charge MOS on state (0 on, 1 off)
+  #    BIT5: Discharge MOS conduction state (0 on, 1 off)
+  #    BIT6: (reserved)
+  #    BIT7 : reserved
+  # ( DATA3: )
+  #    BIT0: charging status
+  #    BIT1: Discharge status
+  #    BIT2: Short circuit protection
+  #    BIT3: (reserved)
+  #    BIT4: Overvoltage protection (not resolved) BIT5: undervoltage protection (not resolved) BIT6: Charging over temperature protection BIT7: Charging under temperature protection
+  # Alarm Status 3: 1039
+  # ( DATA4 :)
+  #    BIT0: Environmental low temperature protection
+  #    BIT1: Environmental high temperature protection
+  #    BIT2: (reserved)
+  #    BIT3: (reserved)
+  #    BIT4: (reserved)
+  #    BIT5: (reserved)
+  #    BIT6: (reserved)
+  #    BIT7: Fan on
+  # ( DATA 5: )
+  #    BIT 0: Force charging MOS on
+  #    BIT 1: Force charging MOS off
+  #    BIT 2: Forced discharge MOS on
+  #    BIT 3: Forced discharge MOS off
+  #    BIT 4: Heating pad on
+  #    BIT 5: MOSFET over temperature protection
+  #    BIT 6: MOSFET low temperature protection
+  #    BIT 7: The charging temperature is too low
+  # Alarm Status 4: 103A
+  # ( DATA6: ) reserved Lbyte:
+  # ( DATA7 )
+  #    BIT0: reserved
+  #    BIT1: Vibration alarm
+  #    BIT2: Dry Contact 1
+  #    BIT3: Dry Contact 2
+  #    BIT4: (reserved)
+  #    BIT5: (reserved)
+  #    BIT6: (reserved)
+  #    BIT7: BMS module SN repetition (BMS module parallel)
+  # Alarm Status 5: 103B
+  # ( DATA8: )
+  #    BIT0: Ambient over temperature alarm
+  #    BIT1: Environment under temperature alarm
+  #    BIT2: MOS over temperature alarm
+  #    BIT3: SOC too low alarm
+  #    BIT4: Overpressure alarm
+  #    BIT5: Battery over- temperature warning
+  #    BIT6: Battery discharge under temperature alarm
+  #    BIT7: (reserved)
+  # DATA9:
+  #    BIT0: Cell overvoltage alarm
+  #    BIT1: Cell undervoltage alarm
+  #    BIT2: Overall overvoltage warning
+  #    BIT3: Overall undervoltage warning
+  #    BIT4: Overcharge alarm
+  #    BIT5: Ignore the overcurrent warning
+  #    BIT6: Battery charging over temperature alarm
+  #    BIT7: Battery charging under temperature alarm
+  # BMS protection status: 0x103C
+  #   HByte: ( DATA 0 : )
+  #    BIT0: (reserved)
+  #    BIT1: (reserved)
+  #    BIT2: (reserved)
+  #    BIT3: (reserved)
+  #    BIT4: (reserved)
+  #    BIT5: Full charge protection
+  #    BIT6: (reserved)
+  #    BIT7: (reserved)
+  #   LByte( DATA 1 : )
+  #    BIT0: Cell overvoltage protection
+  #    BIT1: Overall overvoltage protection
+  #    BIT2: Cell undervoltage protection
+  #    BIT3: Overall undervoltage protection
+  #    BIT4: charging overcurrent 1 protection
+  #    BIT5: Charging overcurrent 2 protection
+  #    BIT6: Discharge overcurrent 1 protection
+  #    BIT7: Discharge overcurrent 2 protection
+  # Operating status: 0x103D
+  #    b15~8: Discharge mode status
+  #    1- Power management constant voltage discharge ;
+  #    2- Battery characteristic discharge mode;
+  #    3- Self-managed constant voltage discharge (self- following)
+  #    b7~0: total running status
+  #    1-Precharge
+  #    2-Through charging
+  #    3- Through discharging
+  #    4-BUCK charging
+  #    5-BOOST charging
+  #    6-BUCK discharge
+  #    7-BOOST discharge
+  #    8-standby (normal, no current)
+  #    9-alarm
+  #    10-protection shutdown
+  #    11- fault shutdown
+  #    12-maintenance mode
+  #    13-test mode
+  #    14-sleep
+  # Reserved: 103E
+  # Number of parallel machines online: 0x103F
+  # total charge capacity AH: 0x1040~ 0x1041
+  # total capacity AH: 0x1042~ 0x1043
+  # total charging time: 0x1044~ 0x1045
+  # total time: 0x1046~ 0x1047
+  # Total charge Wh: 0x1048~ 0x1049
+  # Total put Wh: 0x104A~ 0x104B
+  # MOS temperature: 0x104C
+  # PCB barcode: 0x104D~ 0x1056
+  # System barcode: 0x1065~ 0x106E
+  # Charging loop control: 0x107D
+  #    1- The charging circuit is closed
+  #    0x55 - The charging circuit is disconnected
+  # Discharge loop control: 0x107E
+  #    1- Discharge circuit closed
+  #    0x55 - Discharge circuit disconnected
